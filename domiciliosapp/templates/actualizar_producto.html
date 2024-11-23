@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Producto</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Actualizar Producto</h2>
+
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="producto_ID">ID del Producto:</label>
+                <input type="text" name="producto_ID" class="form-control" required placeholder="ID del producto">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
+        {% if form.instance.producto_ID %}
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="producto_ID">ID del Producto:</label>
+                    <input type="text" name="producto_ID" class="form-control" value="{{ form.instance.producto_ID }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="Nombre_pro">Nombre del Producto:</label>
+                    {{ form.Nombre_pro }}
+                </div>
+                <div class="form-group">
+                    <label for="Cantidad_pro">Cantidad:</label>
+                    {{ form.Cantidad_pro }}
+                </div>
+                <div class="form-group">
+                    <label for="Precio_pro">Precio:</label>
+                    {{ form.Precio_pro }}
+                </div>
+                <div class="form-group">
+                    <label for="ID_distribu">Distribuidor:</label>
+                    {{ form.ID_distribu }}
+                </div>
+                <button type="submit" class="btn btn-success">Actualizar Producto</button>
+            </form>
+        {% endif %}
+
+        <a href="{% url 'listar_productos' %}" class="btn btn-secondary mt-3">Regresar a la lista de productos</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

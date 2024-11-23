@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de productos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Lista de productos</h2>
+            <a href="{% url 'menu' %}" class="btn btn-secondary">Regresar al menú</a>
+        </div>
+
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>producto_ID</th>
+                    <th>Nombre_pro</th>
+                    <th>Cantidad_pro</th>
+                    <th>Precio_pro</th>
+                    <th>ID_distribu</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for productos in productos %}
+                <tr>
+                    <td>{{ productos.producto_ID }}</td>
+                    <td>{{ productos.Nombre_pro }}</td>
+                    <td>{{ productos.Cantidad_pro }}</td>
+                    <td>{{ productos.Precio_pro }}</td>
+                    <td>{{ productos.ID_distribu }}</td>
+                    <td>
+                        <a href="{% url 'eliminar_productos' productos.producto_ID %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
